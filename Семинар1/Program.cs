@@ -46,16 +46,22 @@ while (i < size)
     i++;
 }
 Console.WriteLine(max);
-Console.WriteLine("Задача № 4");
-
-
-
-
-
-
-
-
-
-
-
-//Console.ReadLine()
+Console.WriteLine("Задача № 6");
+Console.Write("Введите любое число: ");
+int number = Convert.ToInt32(Console.ReadLine());
+if (number%2 == 0)
+{
+   Console.WriteLine("Введенное число является четным");
+}else
+{
+    Console.WriteLine("Введенное число не является четным");
+}
+Console.WriteLine("Задача № 8");
+Console.Write("Введите любое число: ");
+int numberN = Convert.ToInt32(Console.ReadLine());
+i = 2;
+while (i <= numberN)
+{
+    Console.Write(i + " ");
+    i += 2;
+}
