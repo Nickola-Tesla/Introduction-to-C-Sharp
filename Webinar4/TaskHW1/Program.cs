@@ -16,7 +16,7 @@ if (number < 100 || number > 999)
 }
 
 int result = number / 10 % 10;
-System.Console.WriteLine(result);
+System.Console.WriteLine($"{number}".GetType());
 
-string numberInString = Console.ReadLine();
-Console.WriteLine(numberInString[1]);
+/*string numberInString = Console.ReadLine();
+Console.WriteLine(numberInString[1]);*/
