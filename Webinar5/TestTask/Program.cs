@@ -20,8 +20,10 @@ void PrintArrayInConsole(int[] array)
 {
     Console.WriteLine(string.Join(",", array));
 }
+
 (int moreThanZero, int lessThanZero) GetSummNumbersLessAndMoreThanZero(int[] array)
 {
+   (int moreThanZero, int lessThanZero) amounts = (0, 0);
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i] > 0)
@@ -29,11 +31,12 @@ void PrintArrayInConsole(int[] array)
         else
             amounts.lessThanZero += array[i];
     }
+    return amounts;
 }
 
 int size = 12;
 int[] array = CreateAndFillingArray(size, -9, 10);
 PrintArrayInConsole(array);
-(int moreThanZero, int lessThanZero) GetSummNumbersLessAndMoreThanZero(int[] array);
+(int moreThanZero, int lessThanZero) amounts = GetSummNumbersLessAndMoreThanZero(array);
 
 System.Console.WriteLine($"Больше 0 = {amounts.moreThanZero}, меньше 0 = {amounts.lessThanZero},");
