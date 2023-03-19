@@ -24,14 +24,14 @@
 2 встречается 1 раз
 8 встречается 1 раз
 9 встречается 3 раза
-
+*/
 int InputNumberWithMessage(string message)
 {
     System.Console.Write(message);
     int value = Convert.ToInt32(Console.ReadLine());
     return value;
 }
-*/
+
 void FillArray(int[] array)
 {
     for (int i = 0; i < array.Length; i++)
@@ -114,31 +114,46 @@ int[] Convert2DArrayToArray(int[,] array2D)
     {
         for (int j = 0; j < array2D.GetLength(1); j++)
         {
-            oneDemensionArray[i * сolumns + j] = array2D[i,j];
+            oneDemensionArray[i * сolumns + j] = array2D[i, j];
         }
-    } 
+    }
 
     return oneDemensionArray;
 }
 
-int size = 10;
-int rows = 3;
-int сolumns = 4;
+int rows = InputNumberWithMessage("Введите количество строк массива от 0 до 10: ");
 
-int[] testOneDemensionArray = new int[size];
-FillArray(testOneDemensionArray);
-PrintArray(testOneDemensionArray);
+int columns = InputNumberWithMessage("Введите количество колонок массива от 0 до 10: ");
 
-BubbleSort(testOneDemensionArray);
-PrintArray(testOneDemensionArray);
-CheckFrequencyInArray(testOneDemensionArray);
+int size = 0;
+if (rows == 0 || columns == 0)
+{
+    if (rows > 0)
+    {
+        size = rows;
+    }
+    else
+    {
+        size = columns;
+    }
+    int[] testOneDemensionArray = new int[size];
+    FillArray(testOneDemensionArray);
+    PrintArray(testOneDemensionArray);
 
-int[,] array2D = new int[rows, сolumns];
+    BubbleSort(testOneDemensionArray);
+    PrintArray(testOneDemensionArray);
+    CheckFrequencyInArray(testOneDemensionArray);
+}
+else
+{
 
-FillArray2D(array2D);
-PrintArray2D(array2D);
-int[] array = Convert2DArrayToArray(array2D);
-PrintArray(array);
-BubbleSort(array);
-PrintArray(array);
-CheckFrequencyInArray(array);
+    int[,] array2D = new int[rows, columns];
+
+    FillArray2D(array2D);
+    PrintArray2D(array2D);
+    int[] array = Convert2DArrayToArray(array2D);
+    PrintArray(array);
+    BubbleSort(array);
+    PrintArray(array);
+    CheckFrequencyInArray(array);
+}
