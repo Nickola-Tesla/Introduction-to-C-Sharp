@@ -1,55 +1,68 @@
-﻿/* Пользователь вводит с клавиатуры M чисел. Посчитайте, 
-сколько чисел больше 0 ввёл пользователь.
-0, 7, 8, -2, -2 -> 2
-1, -7, 567, 89, 223-> 3  ошибка!? почему3? */
+﻿/*Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.*/
 
 
 int InputNumberWithMessage(string message)
 {
     System.Console.Write(message);
-    return Convert.ToInt32(Console.ReadLine());
+    int value = Convert.ToInt32(Console.ReadLine());
+    return value;
 }
 
-
-void FillArray(int[] array)
+int[,] CreateArray(int row, int Columns)
 {
-   
-    for (int i = 0; i < array.Length; i++)
+    int[,] array2D = new int[row, Columns];
+    return array2D;
+}
+
+void FillingArray(int[,] array2D, int lefntRangeValue, int rightRangeValue)
+{
+    Random rnd = new Random();
+    for (int i = 0; i < array2D.GetLength(0); i++)
     {
-        array[i] = InputNumberWithMessage($"Введите {i+1} число: ");
+        for (int j = 0; j < array2D.GetLength(1); j++)
+        {
+            array2D[i, j] = rnd.Next(lefntRangeValue, rightRangeValue);
+        }
     }
 }
 
-
-void PrintArray(int[] array)
+void PrintArrayInConsole(int[,] array2D)
 {
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < array2D.GetLength(0); i++)
     {
-        Console.Write(array[i] + " ");
+        for (int j = 0; j < array2D.GetLength(1); j++)
+        {
+            System.Console.Write(array2D[i, j] + " ");
+        }
+        System.Console.WriteLine();
     }
 }
 
-
-int CountPositiveNumbers(int[] array)
+void SearchArithmeticMeanColumnsArray2D(int[,] array2d)
 {
-    int count = 0;
-    for (int i = 0; i < array.Length; i++)
+    double arithmeticMean = 0;
+    for (int i = 0; i < array2d.GetLength(1); i++)
     {
-            if (array[i] > 0)
-            count = count + 1;
-        
+        for (int j = 0; j < array2d.GetLength(0);j++)
+        {
+            arithmeticMean += array2d[j, i];
+        }
+        Console.WriteLine(Math.Round(Convert.ToDouble(arithmeticMean / array2d.GetLength(0)), 2));
     }
-    return count;
+    
 }
 
-int length = InputNumberWithMessage("Введите количество чисел: ");
-int [] nunbers = new int [length];
+int rows = InputNumberWithMessage("Введите число строк массива: ");
+int columns = InputNumberWithMessage("Введите число колонок массива: ");
 
-
-FillArray(nunbers);
-PrintArray(nunbers);
-
-int result = CountPositiveNumbers(nunbers);
-
+int[,] array2d = CreateArray(rows, columns);
+FillingArray(array2d, 1, 10);
+PrintArrayInConsole(array2d);
 System.Console.WriteLine();
-System.Console.WriteLine($"Количество положительных чисел: {result}");
+SearchArithmeticMeanColumnsArray2D(array2d);
